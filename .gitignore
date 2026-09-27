@@ -59,6 +59,7 @@ venv.bak/
 .Trashes
 
 # Database files (local runtime state)
+*.db
 *.sqlite3
 *.db-journal
 *.db-wal
@@ -80,3 +81,4 @@ coverage.xml
 
 # Logs
 *.log
+!execution.log

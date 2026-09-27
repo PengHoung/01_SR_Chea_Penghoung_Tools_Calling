@@ -1,0 +1,76 @@
+============================================================
+      SAFE SHOPPING AGENT - INTERACTIVE CONSOLE
+============================================================
+Select your active role:
+  1) Customer (can search & check stock)
+  2) Admin (can search, check stock, and delete products)
+Enter choice (1/2, default 1): 
+Loading local model 'llama3.2:3b'...
+Agent ready. Active Role: [CUSTOMER]
+Commands: type 'switch' to toggle role, 'exit' to quit.
+
+[CUSTOMER] You: 
+Agent: Hello! Welcome to our store. How can I assist you with our catalog today?
+
+------------------------------------------------------------
+[CUSTOMER] You: Can you show the items in your shop?
+   [Model Decision] -> Invoking tool: 'list_all_products' with args: {}
+   [Tool Output]    -> All catalog products:
+[ID: 1] Pro Gaming Laptop (Electronics) - $1299.99
+[ID: 2] Office Ultrabook Laptop (Electronics) - $950.00
+[ID: 4] Mechanical RGB Keyboard (Accessories) - $89.00
+[ID: 3] Wireless Ergonomic Mouse (Accessories) - $55.29
+
+
+Agent: Here is the list of items in our shop:
+
+1. Pro Gaming Laptop (ID: 1) - $1299.99
+2. Office Ultrabook Laptop (ID: 2) - $950.00
+3. Mechanical RGB Keyboard (ID: 4) - $89.00
+4. Wireless Ergonomic Mouse (ID: 3) - $55.29
+
+------------------------------------------------------------
+[CUSTOMER] You: which items are out of stock?
+   [Model Decision] -> Invoking tool: 'check_stock' with args: {'product_ids': ''}
+   [Tool Output]    -> Inventory Status: 2 item(s) are currently out of stock.
+Out of stock items: 'Office Ultrabook Laptop' (ID: 2), 'Mechanical RGB Keyboard' (ID: 4)
+In-stock items: 'Pro Gaming Laptop' (ID: 1, stock: 4), 'Wireless Ergonomic Mouse' (ID: 3, stock: 1)
+
+
+Agent: The Office Ultrabook Laptop (ID: 2) and Mechanical RGB Keyboard (ID: 4) are currently out of stock. The Pro Gaming Laptop (ID: 1) has 4 units in stock, and the Wireless Ergonomic Mouse (ID: 3) has 1 unit in stock.
+
+-----------------------------------------
+[CUSTOMER] You: check stock for mouse, and if it is in stock please buy 1 unit for me
+   [Model Decision] -> Invoking tool: 'check_stock' with args: {'product_ids': '3'}
+   [Tool Output]    -> [ID: 3] Wireless Ergonomic Mouse | Status: 1 units in stock
+
+
+   [Model Decision] -> Invoking tool: 'buy_product' with args: {'product_id': '3', 'quantity': '1'}
+   [Tool Output]    -> PURCHASE CONFIRMED: 1x 'Wireless Ergonomic Mouse' bought for $55.29. The new updated stock in the database is EXACTLY 0 units.
+
+
+Agent: Your purchase of 1x 'Wireless Ergonomic Mouse' has been successfully completed. The current stock status is 0 units.
+
+[ID: 3] Wireless Ergonomic Mouse | Status: 1 units in stock
+
+PURCHASE CONFIRMED: 1x 'Wireless Ergonomic Mouse' bought for $55.29. The new updated stock
+
+------------------------------------------------------------
+[CUSTOMER] You: delete product 5
+   [Model Decision] -> Invoking tool: 'delete_product' with args: {'product_id': '5'}
+   [Tool Output]    -> PERMISSION DENIED: Active role 'CUSTOMER' is not authorized to execute 'delete_product'.
+
+
+Agent: You do not have the necessary permissions to delete the product. Please contact an administrator for assistance.
+
+------------------------------------------------------------
+[CUSTOMER] You: Switched role to: [ADMIN]
+[ADMIN] You: delete product 5
+   [Model Decision] -> Invoking tool: 'delete_product' with args: {'product_id': '5'}
+   [Tool Output]    -> Product ID 5 could not be found or removed.
+
+
+Agent: Product ID 5 does not exist in the database.
+
+------------------------------------------------------------
+[ADMIN] You: Goodbye!
