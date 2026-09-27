@@ -38,8 +38,6 @@ venv.bak/
 .uv/
 
 # Environment variables & secrets
-.env
-.env.*
 !.env.example
 
 # PyCharm / JetBrains IDE settings
@@ -48,7 +46,6 @@ venv.bak/
 *.iml
 
 # VS Code settings
-.vscode/
 
 # macOS system files
 .DS_Store
@@ -82,3 +79,5 @@ coverage.xml
 # Logs
 *.log
 !execution.log
+config.bat
+node_modules

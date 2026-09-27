@@ -1,4 +1,55 @@
 # Safe Shopping & Inventory Management Agent
+```markdown
+## Getting Started & Execution Guide
+
+Follow these steps to set up the environment, initialize the SQLite database, and run the agent in your local terminal.
+
+---
+
+### 1. Prerequisites
+- **Python:** 3.10+
+- **Package Manager:** `uv` (recommended) or `pip`
+- **Local LLM Engine:** [Ollama](https://ollama.ai/) running `llama3.2:3b`
+
+Ensure Ollama is running and the model is downloaded:
+```bash
+ollama run llama3.2:3b
+
+```
+
+---
+
+### Step:A. Environment Setup
+
+Clone the repository and install the dependencies:
+
+```bash
+# Using uv (fastest)
+uv sync
+
+# Or using standard venv + pip
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+```
+
+---
+
+### Step:B. Database Initialization & Seeding
+
+The application manages inventory persistence via SQLite in `shop.db`.
+
+To create the initial schema and populate the catalog with the 5 baseline products, execute:
+
+```bash
+python database.py
+
+```
+
+```
+
+```
 
 An interactive store assistant and inventory management agent powered by llama3.2:3b and an SQLite database (shop.db). The system incorporates Role-Based Access Control (RBAC), structured Pydantic tool schemas, execution loop limits, and deterministic output grounding to prevent hallucinations and maintain factual consistency.
 

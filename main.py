@@ -1,3 +1,5 @@
+import utils.transport
+import utils.session
 from langchain_ollama import ChatOllama
 from tools import TOOL_REGISTRY
 from harness import SafetyHarness
